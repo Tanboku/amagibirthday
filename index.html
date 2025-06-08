@@ -1,11 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>amagibirthday</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>狮虎生日快乐！！</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
-<body>
-    test
+<body class="font-sans bg-gradient-to-br from-yellow-50 to-pink-50 min-h-screen overflow-x-hidden">
+  <!-- 页面加载动画 -->
+  <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-white">
+    <div class="flex flex-col items-center">
+      <div class="w-16 h-16 border-4 border-yellow-300 border-t-yellow-500 rounded-full animate-spin"></div>
+      <p class="mt-4 text-yellow-600">加载中...</p>
+    </div>
+  </div>
+
+  <!-- 音频控制 -->
+  <div class="fixed bottom-4 right-4 z-40">
+    <button id="audioControl" class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg hover:bg-yellow-600 transition-colors">
+      <i id="audioIcon" class="fa fa-music text-white text-xl"></i>
+    </button>
+    <audio id="birthdayMusic" loop>
+      <source src="audio/birthday.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- 主内容区 -->
+  <main class="opacity-0 transition-opacity duration-1000" id="content">
+    <!-- 封面页 -->
+    <section id="cover" class="min-h-screen relative flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-pink-100 to-purple-100 z-0"></div>
+      <div class="absolute inset-0 bg-[url('images/cake.gif')] bg-center bg-contain bg-no-repeat opacity-10 z-0"></div>
+      
+      <div class="container mx-auto px-6 py-12 relative z-10">
+        <div class="text-center">
+          <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-red-500 to-purple-600 mb-6 animate-pulse">狮虎生日快乐!</h1>
+          <p class="text-[clamp(1rem,3vw,1.5rem)] text-gray-700 mb-10 max-w-3xl mx-auto">这是一份特别的礼物，为特别的你准备的特别日子，点击右下角开启bgm</p>
+          <button id="startJourney" class="px-8 py-4 bg-gradient-to-r from-yellow-400 to-pink-500 text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+            开启为你准备的小礼物 <i class="fa fa-arrow-down ml-2 animate-bounce"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-[60px] md:h-[100px]">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C0,0,31,30,31,30z" fill="#ffffff"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 第一部分：特别的你 -->
+    <section class="py-20 bg-white relative">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-16 text-center">
+            <span class="inline-block py-1 px-3 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium mb-4">特别的你</span>
+            <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-6">你是独一无二的存在</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">每一个生日都是一次新的开始，一个反思过去、规划未来的机会。让我们一起回顾那些让你成为今天这个特别的你的时刻。</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="bg-gradient-to-br from-yellow-50 to-pink-50 p-8 rounded-2xl shadow-lg transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">回望过去</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                    <i class="fa fa-birthday-cake text-yellow-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">第一次相遇</h4>
+                    <p class="text-gray-600">在托拉姆的论坛一眼看到了你的帖子，成为了你的兔兔</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fa fa-graduation-cap text-blue-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">毕业</h4>
+                    <p class="text-gray-600">狮虎今年完成了在国外的学业，回国后可以天天吃好吃的了</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-green-100 p-3 rounded-full mr-4">
+                    <i class="fa fa-briefcase text-green-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">事业</h4>
+                    <p class="text-gray-600">开始写书，希望狮虎的书能够大火哦</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-purple-100 p-3 rounded-full mr-4">
+                    <i class="fa fa-heart text-purple-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">其他</h4>
+                    <p class="text-gray-600">不知道要说什么了，那就祝狮虎天天开心叭❤</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative h-80 md:h-[400px] overflow-hidden rounded-2xl shadow-lg">
+              <img src="./images/cake.gif" alt="蛋糕动图" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                <div class="p-6 text-white">
+                  <h3 class="text-xl font-bold mb-2">生日快乐!</h3>
+                  <p class="text-sm text-gray-200">来一块赛博蛋糕</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 第二部分：难忘回忆 -->
+    <section class="py-20 bg-gray-50 relative">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-16 text-center">
+            <span class="inline-block py-1 px-3 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">难忘回忆</span>
+            <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-6">美好的时光总是短暂</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">但记忆会永远留存。</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+              <div class="h-48 overflow-hidden">
+                <img src="./images/656393DCDB5E5E79892FAC66D37EB7B4.jpg" alt="优兔成行" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">双人成行</h3>
+                <p class="text-gray-600 text-sm">超好玩的游戏，特别是和狮虎一起玩，很难忘的回忆</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+              <div class="h-48 overflow-hidden">
+                <img src="./images/CF33228FA2EA2DFDE7F2C6EE61BC6E42.jpg" alt="旅行风景的照片" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">旅行</h3>
+                <p class="text-gray-600 text-sm">狮虎出去旅游，好多好看的照片，可以看出来狮虎玩的很开心</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+              <div class="h-48 overflow-hidden">
+                <img src="./images/image.png" alt="幸福工厂" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+              </div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">打灰</h3>
+                <p class="text-gray-600 text-sm">幸福工厂！！！不知道狮虎设想中的城市会在什么时候造出来，我真的很希望见到那一天</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 第三部分：时间线 -->
+    <section class="py-20 bg-white relative">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-16 text-center">
+            <span class="inline-block py-1 px-3 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-4">时间线</span>
+            <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-6">时间过得真快啊</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">从刚认识到现在，一眨眼的功夫，你包容过很多次幼稚的我，一直以来谢谢你</p>
+          </div>
+
+          <div class="relative">
+            <!-- 时间线 -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-yellow-200 z-0"></div>
+            
+            <div class="space-y-16 relative z-10">
+              <!-- 时间线 1 -->
+              <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+                  <div class="bg-gradient-to-r from-yellow-50 to-pink-50 p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">2020/5/6</h3>
+                    <p class="text-gray-600">第一次相遇</p>
+                  </div>
+                </div>
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-400 text-white font-bold text-xl shadow-lg z-10">1</div>
+                <div class="md:w-1/2 md:pl-12 md:text-left"></div>
+              </div>
+              
+              <!-- 时间线 2 -->
+              <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right"></div>
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-400 text-white font-bold text-xl shadow-lg z-10">2</div>
+                <div class="md:w-1/2 md:pl-12 md:text-left">
+                  <div class="bg-gradient-to-r from-yellow-50 to-pink-50 p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">2022/8/11</h3>
+                    <p class="text-gray-600">有了第一台电脑，终于可以和狮虎一起玩游戏了</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 时间线 3 -->
+              <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right">
+                  <div class="bg-gradient-to-r from-yellow-50 to-pink-50 p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">2023/7/20</h3>
+                    <p class="text-gray-600">当时最脆弱的兔兔，遇上了最好的狮虎，所以我最喜欢狮虎了</p>
+                  </div>
+                </div>
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-400 text-white font-bold text-xl shadow-lg z-10">3</div>
+                <div class="md:w-1/2 md:pl-12 md:text-left"></div>
+              </div>
+              
+              <!-- 时间线 4 -->
+              <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 md:text-right"></div>
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-400 text-white font-bold text-xl shadow-lg z-10">4</div>
+                <div class="md:w-1/2 md:pl-12 md:text-left">
+                  <div class="bg-gradient-to-r from-yellow-50 to-pink-50 p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">现在</h3>
+                    <p class="text-gray-600">要天天开心呀</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 第四部分：祝福视频 -->
+    <section class="py-20 bg-gradient-to-br from-indigo-50 to-blue-50 relative">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-16 text-center">
+            <span class="inline-block py-1 px-3 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">祝福小视频</span>
+            <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-6">来自兔兔的祝福</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">思来想去，我好像也没什么能送的，索性录个视频，这段时间挺压抑的，犯了一些错，是祝福，也是道歉</p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="aspect-video bg-gray-100 relative">
+              <video id="birthdayVideo" class="w-full h-full object-cover" controls poster="./images/cake.gif">
+                <source src="video/birthday.mp4" type="video/mp4">
+                您的浏览器不支持视频标签。
+              </video>
+              <div class="absolute inset-0 flex items-center justify-center cursor-pointer" id="playButton">
+                <div class="w-20 h-20 bg-white/80 rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-110">
+                  <i class="fa fa-play text-blue-500 text-3xl ml-2"></i>
+                </div>
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">所以生日快乐呀，希望狮虎天天开心</h3>
+              <p class="text-gray-600">—— 兔兔</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 第五部分：生日快乐 -->
+    <section class="py-20 bg-white relative">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-16 text-center">
+            <span class="inline-block py-1 px-3 bg-red-100 text-red-800 rounded-full text-sm font-medium mb-4">生日快乐</span>
+            <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-gray-800 mb-6">新的一岁，新的开始</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">愿你的生日充满喜悦，愿你的未来充满无限可能。</p>
+          </div>
+
+          <div class="relative h-[400px] overflow-hidden rounded-2xl shadow-xl">
+            <div class="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600 opacity-80 z-10"></div>
+            <img src="./images/888-1200x600.jpg" alt="生日庆祝的照片" class="absolute inset-0 w-full h-full object-cover z-0">
+            
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-20 text-center p-8">
+              <h3 class="text-4xl md:text-5xl font-bold mb-6 animate-pulse">生日快乐!</h3>
+              <p class="text-xl md:text-2xl mb-8 max-w-2xl">愿你的生活像彩虹一样绚丽多彩，充满爱、幸福和欢笑。</p>
+              <div class="space-y-4">
+                <p class="text-lg">愿你在新的一岁里：</p>
+                <p class="text-lg">实现所有的梦想</p>
+                <p class="text-lg">收获满满的幸福</p>
+                <p class="text-lg">健康快乐每一天</p>
+              </div>
+            </div>
+            
+            <!-- 装饰元素：气球 -->
+            <div class="absolute top-0 left-0 w-full h-full z-30 pointer-events-none">
+              <div id="balloons"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 结束语 -->
+    <section class="py-20 bg-gray-50 relative">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">感谢你出现在我的生命中</h2>
+            <p class="text-gray-600 text-lg mb-12">我脑子笨，没有情商不会说话，不会安慰人，自卑敏感，能包容这样的我，一直以来，真的谢谢你了</p>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+              <p class="text-gray-700 text-xl italic">"最后的最后，祝狮虎永远不死，嘿嘿嘿"</p>
+            </div>
+            
+            <div class="mt-12">
+              <button id="restartJourney" class="px-8 py-4 bg-gradient-to-r from-yellow-400 to-pink-500 text-white rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                再看一遍 <i class="fa fa-refresh ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-6">
+      <div class="text-center">
+        <p class="mb-4">生日快乐，愿你的每一天都充满爱与喜悦！</p>
+        <p class="text-gray-400 text-sm">© 2025 特别的你</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
+    
